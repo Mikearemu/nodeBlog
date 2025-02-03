@@ -1,38 +1,45 @@
 <div class="author">
-    <h1 class="author_heading">
-        Hi, I am Mike Aremu
-    </h1>
-    <p class="author_body">
-        We Developer and Designer
-    </p>
-
-    <img src="/img/hero-image.webp" alt="">
+    <div class="hero__banner">
+        <div class="hero__content">
+            <h1 class="hero__heading"> <img src="/svg/thestacks__white.svg" alt=""> </h1>
+            <p class="hero__body">thestack(s); Developer Forum is a community of developers who share knowledge and grow
+                their careers.</p>
+        </div>
+    </div>
 
     <section class="articles">
-
-        <h2 class="articles__heading"> Lastest Post</h2>
+        <h2 class="articles__heading">Trending Topics</h2>
 
         <ul class="article-ul">
-
             <% data.forEach(post=> { %>
-
                 <li>
                     <a href="/post/<%= post._id %>">
                         <span>
                             <%= post.title %>
                         </span>
-                        <span class="article-list__date">
-                            <%= post.createdAt.toDateString() %>
+
+                        <span>
+                            <!-- Display number of likes -->
+                            <span class="article-list__likes">
+                                👍 <%= post.likes || 0 %>
+                            </span>
+                            <!-- Display number of comments -->
+                            <span class="article-list__comments">
+                                💬 <%= post.commentCount || 0 %> 
+                            </span>
+                            <span class="article-list__date">
+                                <%= post.createdAt.toDateString() %>
+                            </span>
                         </span>
+
+
                     </a>
                 </li>
-
                 <% }); %>
         </ul>
-        <% if (nextPage !== null) { %>
 
-            <a href="/?page<% nextPage %>" class="pagination">&lt; view Older Posts</a>
+        <% if (nextPage !==null) { %>
+            <a href="/?page=<%= nextPage %>" class="pagination">&lt; view Older Posts</a>
             <% } %>
-
     </section>
 </div>
